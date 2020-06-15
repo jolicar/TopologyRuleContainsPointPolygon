@@ -9,7 +9,7 @@ This test case checks the topology rule when we use 2D multipoint dataset and 2D
 ### Requirements
 
 1. Have *gvSIG desktop 2.5.1* and *Topology framework plugin* installed.
-2. Have acces to [**TP00RU00CP0011_pol2D_C.csv**]() and [**TP00RU00CP0011_Mpts2D_I.csv**]() files.
+2. Have acces to [**TP00RU00CP0011_pol2D_C.csv**](https://github.com/jolicar/TopologyRuleContainsPointPolygon/blob/master/testing/cases/TP00_TopologyRules/RU00_ContainsPoint/CP0011_MptsC_polC/TP00RU00CP0011_pol2D_C.csv) and [**TP00RU00CP0011_Mpts2D_I.csv**](https://github.com/jolicar/TopologyRuleContainsPointPolygon/blob/master/testing/cases/TP00_TopologyRules/RU00_ContainsPoint/CP0011_MptsC_polC/TP00RU00CP0011_Mpts2D_I.csv) files.
 
 ### Steps...
 
