@@ -9,16 +9,16 @@ This test case checks the topology rule when we use 2D point dataset and 2D mult
 ### Requirements
 
 1. Have *gvSIG desktop 2.5.1* and *Topology framework plugin* installed.
-2. Have acces to [**TP00RU00CP0013_Mpol2D_C.csv**]() and [**TP00RU00CP0013_pts2D_I_1.csv**]() files.
+2. Have acces to [**TP00RU00CP0013_Mpol2D_C.csv**](https://github.com/jolicar/TopologyRuleContainsPointPolygon/blob/master/testing/cases/TP00_TopologyRules/RU00_ContainsPoint/CP0013_ptsC_MpolI/TP00RU00CP0013_Mpol2D_C.csv) and [**TP00RU00CP0013_pts2D_I.csv**](https://github.com/jolicar/TopologyRuleContainsPointPolygon/blob/master/testing/cases/TP00_TopologyRules/RU00_ContainsPoint/CP0013_ptsC_MpolI/TP00RU00CP0013_pts2D_I.csv) files.
 
 ### Steps...
 
 1. Load the layer **TP00RU00CP0013_Mpol2D_C.csv** in the view.
-2. Load the layer **TP00RU00CP0013_pts2D_I_1.csv** in the view.
+2. Load the layer **TP00RU00CP0013_pts2D_I.csv** in the view.
 3. Create a new empty topology plan.
 4. Fill the basic topology plan data.
 5. Add the **TP00RU00CP0013_Mpol2D_C.csv** file like a dataset.
-6. Add the **TP00RU00CP0013_pts2D_I_1.csv** file like a dataset.
+6. Add the **TP00RU00CP0013_pts2D_I.csv** file like a dataset.
 7. Add a new rules parameters on Rules tab.
 8. On those rule parameters identify the *primary dataset*, the *second dataset*, the *Must Be Properly Inside topology rule* and the *tolerancy*. This tolerancy can be zero or greater.
 9. Click on the "Ok" button.
