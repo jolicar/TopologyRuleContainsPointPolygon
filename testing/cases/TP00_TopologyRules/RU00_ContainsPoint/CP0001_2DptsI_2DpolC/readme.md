@@ -4,12 +4,12 @@
 
 ### Description
 
-This test case checks the topology rule when we use incorrect 2D point datasets and correct 2D polygon dataset. One polygon dont have any internal point.The point dataset are incorrect because the number of points is least to number of polygons. The final result has errors.
+This test case checks the topology rule when we use incorrect 2D point datasets and correct 2D polygon dataset. One polygon dont have any internal point. The point dataset are incorrect because the number of points is least to number of polygons. The final result has errors.
 
 ### Requirements
 
 1. Have *gvSIG desktop 2.5.1* and *Topology framework plugin* installed.
-2. Have acces to [**TP00RU00CP0001_pol2D_C.csv**]() and [**TP00RU00CP0001_pts2D_I.csv**]().
+2. Have acces to [**TP00RU00CP0001_pol2D_C.csv**](https://github.com/jolicar/TopologyRuleContainsPointPolygon/blob/master/testing/cases/TP00_TopologyRules/RU00_ContainsPoint/CP0001_2DptsI_2DpolC/TP00RU00CP0001_pol2D_C.csv) and [**TP00RU00CP0001_pts2D_I.csv**](https://github.com/jolicar/TopologyRuleContainsPointPolygon/blob/master/testing/cases/TP00_TopologyRules/RU00_ContainsPoint/CP0001_2DptsI_2DpolC/TP00RU00CP0001_pts2D_I.csv).
 ### Steps...
 
 1. Load the layer **TP00RU00CP0001_pol2D_C.csv** in the view.
