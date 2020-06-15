@@ -9,7 +9,7 @@ This test case checks the topology rule when we use correct 3D point datasets an
 ### Requirements
 
 1. Have *gvSIG desktop 2.5.1* and *Topology framework plugin* installed.
-2. Have acces to [**TP00RU00CP0004_pol3D_C.csv**]() and [**TP00RU00CP0004_pts3D_C.csv**]() files.
+2. Have acces to [**TP00RU00CP0004_pol3D_C.csv**](https://github.com/jolicar/TopologyRuleContainsPointPolygon/blob/master/testing/cases/TP00_TopologyRules/RU00_ContainsPoint/CP0004_3DptsC_3DpolC/TP00RU00CP0004_pol3D_C.csv) and [**TP00RU00CP0004_pts3D_C.csv**](https://github.com/jolicar/TopologyRuleContainsPointPolygon/blob/master/testing/cases/TP00_TopologyRules/RU00_ContainsPoint/CP0004_3DptsC_3DpolC/TP00RU00CP0004_pts3D_C.csv) files.
 
 ### Steps...
 
