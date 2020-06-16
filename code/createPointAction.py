@@ -6,7 +6,7 @@ import sys
 from org.gvsig.topology.lib.spi import AbstractTopologyRuleAction
 from org.gvsig.fmap.geom import GeometryLocator
 
-class DeletePolygonAction(AbstractTopologyRuleAction):
+class CreatePointAction(AbstractTopologyRuleAction):
     
     def __init__(self):
         AbstractTopologyRuleAction.__init__(
