@@ -11,8 +11,8 @@
 
 * **Potential fixes actions:** 
   - **Delete** The delete action removes polygon features for cases when *Contains Point* Topology Rule it is false.
-  - **Create feature** This action creates a new point feature at the centroid of the  wrong polygon feature.
+  - **Create feature** This action creates a new aleatory internal point feature on the wrong polygon feature.
 
-***NOTE 3:** The behavior of the create action in multigeometries is simple. If the multipolygon don't have at lest one point on his gemetry, the fixed action create a new point feature on his first geometry centroid.*
+***NOTE 3:** The behavior of the create action in multigeometries is simple. If the multipolygon don't have at lest one point on his geometry, the fixed action create a new aleatory internal point feature on his first geometry.*
 
 #### [*Back to GSoC2020 Project Wiki*](https://github.com/jolicar/GSoC2020/wiki/GSoC2020-New-rules-for-the-Topology-Framework-in-gvSIG-Desktop)
