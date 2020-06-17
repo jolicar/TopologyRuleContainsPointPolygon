@@ -5,6 +5,7 @@ import sys
 
 from org.gvsig.topology.lib.spi import AbstractTopologyRuleAction
 from org.gvsig.fmap.geom import GeometryLocator
+from gvsig import geom
 
 class CreatePointAction(AbstractTopologyRuleAction):
     
@@ -26,17 +27,24 @@ class CreatePointAction(AbstractTopologyRuleAction):
         store1=dataSet1.getFeatureStore()
         store2=dataSet2.getFeatureStore()
   
-        proj=store1.getDefaultFeatureType().getProjection()
-        subtype=store1.getDefaultFeatureType().getSubType()
+        #proj=store1.getDefaultFeatureType().getProjection()
+        #subtype=store1.getDefaultFeatureType().getSubType()
+
+        proj=store1.getFeatures()[0].getDefaultGeometry().getProjection()
+        subtype=store1.getFeatures()[0].getDefaultGeometry().getGeometryType().getSubType()
   
-        if geomManager.isSubtype(geom.MULTIPOLYGON,store1.getDefaultFeatureType().getType()):
-          polygon=line.getFeature1().getPrimitiveAt(0)
+        if geomManager.isSubtype(geom.MULTIPOLYGON,store1.getFeatures()[0].getDefaultGeometry().getGeometryType().getType()):
+          polygon=line.getGeometry().getPrimitiveAt(0)
 
-        polygon=line.getFeature1()
-        newPoint = geomManager.createPoint(polygon.getInteriorPoint().getX(),polygon.getInteriorPoint().getY(), subtype)
-        newPoint.setProjection(proj)
+        polygon=line.getGeometry()
 
-        store2.insert(newPoint)
+        newPoint=polygon.getInteriorPoint()
+
+        #newPoint = geomManager.createPoint(.getX(),polygon.getInteriorPoint().getY(), subtype)
+        #newPoint.setProjection(proj)
+
+        gvsig.logger(str(type(store2.getFeatures()[0]))) #El problema que con newPoint creo una geometria nueva, ahora tengo que crear los campos que tiene la capa y añadirla
+        store2.append(newPoint)#Esto no funciona
 
       except:
         ex = sys.exc_info()[1]
