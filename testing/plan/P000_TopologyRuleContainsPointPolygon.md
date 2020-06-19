@@ -17,6 +17,8 @@
 {% include ../cases/TP00_TopologyRules/RU00_ContainsPoint/CP0012_ptsC_MpolC/readme.md %}
 {% include ../cases/TP00_TopologyRules/RU00_ContainsPoint/CP0013_ptsC_MpolI/readme.md %}
 {% include ../cases/TP00_TopologyRules/RU00_ContainsPoint/CP0014_pts_OUT_Tol/readme.md %}
+{% include ../cases/TP00_TopologyRules/RU00_ContainsPoint/CP0015_dif_proj/readme.md %}
+
 
 
 
