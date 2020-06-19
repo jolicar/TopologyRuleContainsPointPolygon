@@ -20,7 +20,7 @@ This test case checks the topology rule when we use a correct 2D point dataset a
 5. Add the **TP00RU00CP0009_pol3DM_C.csv** file like a dataset.
 6. Add the **TP00RU00CP0009_pts2D_C.csv** file like a dataset.
 7. Add a new rules parameters on Rules tab.
-8. On those rule parameters identify the *primary dataset*, the *second dataset*, the *Must Be Properly Inside topology rule* and the *tolerancy*. This tolerancy can be zero or greater.
+8. On those rule parameters identify the *primary dataset*, the *second dataset*, the *Contains point topology rule* and the *tolerancy*. This tolerancy can be zero or greater.
 9. Click on the "Ok" button.
 10. Click on the "Ok" button to finish the topology plan creation.
 11. Execute the topology plan.
