@@ -41,9 +41,9 @@ class CreatePointAction(AbstractTopologyRuleAction):
         newPoint=polygon.getInteriorPoint()
 
         newFeature=store2.createNewFeature()
-        geomName=store2.getDefaultFeatureType().getDefaultGeometryAttributeName()
+        #geomName=store2.getDefaultFeatureType().getDefaultGeometryAttributeName()
 
-        newFeature.set(geomName,newPoint)
+        newFeature.setDefaultGeometry(newPoint)
 
         dataSet2.insert(newFeature)
 

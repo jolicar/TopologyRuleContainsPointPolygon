@@ -30,7 +30,7 @@ class ContainsPointPolygonRule(AbstractTopologyRule):
 
   def contains(self, polygon1, dataSet2): 
     if dataSet2.getSpatialIndex() != None:
-      for featureReference in polygon1.query(dataSet2): # change query for getFeaturesThatEnvelopeIntersectsWith
+      for featureReference in dataSet2.query(polygon1): # change query for getFeaturesThatEnvelopeIntersectsWith
         feature2 = featureReference.getFeature()
         point2 = feature2.getDefaultGeometry()
         if polygon1.contains(point2):
@@ -57,29 +57,27 @@ class ContainsPointPolygonRule(AbstractTopologyRule):
 
 
   def intersectsWithBuffer(self, polygon1, dataSet2): 
-    store2 = dataSet2.getFeatureStore()
-    features2=store2.getFeatures()
-    for point2 in features2:
-      point2 = point2.buffer(self.getTolerance())
+    buffer1 = polygon1.buffer(self.getTolerance())
 
     if dataSet2.getSpatialIndex() != None:
-      for featureReference in polygon1.query(dataSet2): # change query for getFeaturesThatEnvelopeIntersectsWith
+      for featureReference in dataSet2.query(buffer1): # change query for getFeaturesThatEnvelopeIntersectsWith
         feature2 = featureReference.getFeature()
-        polygon2 = feature2.getDefaultGeometry()
-        if polygon1.intersects(polygon2):
+        point2 = feature2.getDefaultGeometry()
+        if buffer1.intersects(point2):
           return  True
       return False
 
     if self.geomName==None:
+      store2 = dataSet2.getFeatureStore()
       self.geomName = store2.getDefaultFeatureType().getDefaultGeometryAttributeName()
 
     self.expression.setPhrase(
       self.expressionBuilder.ifnull(
-        self.expressionBuilder.geometry(polygon1),
+        self.expressionBuilder.geometry(buffer1),
         self.expressionBuilder.constant(False),
         self.expressionBuilder.ST_Intersects(
           self.expressionBuilder.column(self.geomName),
-          self.expressionBuilder.geometry(polygon1) 
+          self.expressionBuilder.geometry(buffer1) 
         )
       ).toString()
     )
@@ -109,9 +107,13 @@ class ContainsPointPolygonRule(AbstractTopologyRule):
       if geomManager.isSubtype(geom.POLYGON,geometryType1.getType()):
         if mustConvert2D:
           proj=polygon1.getProjection()
+          newPolygon=geomManager.createPolygon(subtype)
           for point1 in polygon1:
             point1 = geomManager.createPoint(point1.getX(),point1.getY(), subtype)
             point1.setProjection(proj)
+            newPolygon.set(point1)
+          polygon1=newPolygon
+          gvsig.logger(str(polygon1))
         if not operation(polygon1, dataSet2):
           report.addLine(self,
             self.getDataSet1(),

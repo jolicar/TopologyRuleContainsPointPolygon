@@ -6,7 +6,7 @@
 * **Brief description:** The rule evaluates all the polygons. If each polygon have at least one point inside, the rule returns *True*. The points has to fall within the polygon's area, not on the boundary or out of it. The red polygons does the rule false. In 2DM, 3D and 3DM formats, the Z coordinate or M coordinate are ignored.
 * **Limitations:** The two datasets cant have a different projection.
 * **Rule behavior:** 
-  - If the Tolerance equals zero, the rule does as above. If the tolerance is greater than zero, the point are transformed into "polygon". If one point of this new polygon are inside of dataset 1 polygon, the rule return True.
+  - If the Tolerance equals zero, the rule does as above. If the tolerance is greater than zero, the scrip does a polygon buffer with tolerance value. If one point are inside of new dataset 1 polygon, the rule return True.
   - For Multipolygons, if one of their geometries has at least one point inside, the rule returns True. For Multipoints, if one of these geometries are inside of polygon's area, the rule returns True.
 
 * **Potential fixes actions:** 
