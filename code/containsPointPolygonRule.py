@@ -33,7 +33,9 @@ class ContainsPointPolygonRule(AbstractTopologyRule):
       for featureReference in dataSet2.query(polygon1): # change query for getFeaturesThatEnvelopeIntersectsWith
         feature2 = featureReference.getFeature()
         point2 = feature2.getDefaultGeometry()
+        proj2=point2.getProjection()
         point2 = point2.force2D()
+        point2.setProjection(proj2)
         if polygon1.contains(point2):
           return  True
       return False
@@ -58,38 +60,35 @@ class ContainsPointPolygonRule(AbstractTopologyRule):
 
 
   def intersectsWithBuffer(self, polygon1, dataSet2): 
-    gvsig.logger("HOLA2")
     buffer1 = polygon1.buffer(self.getTolerance())
-    gvsig.logger("HOLA3")
+    
     if dataSet2.getSpatialIndex() != None:
       for featureReference in dataSet2.query(buffer1): # change query for getFeaturesThatEnvelopeIntersectsWith
         feature2 = featureReference.getFeature()
         point2 = feature2.getDefaultGeometry()
+        proj2=point2.getProjection()
         point2 = point2.force2D()
+        point2.setProjection(proj2)
         if buffer1.intersects(point2):
           return  True
       return False
 
     if self.geomName==None:
-      gvsig.logger("HOLA6")
       store2 = dataSet2.getFeatureStore()
-      gvsig.logger("HOLA7")
       self.geomName = store2.getDefaultFeatureType().getDefaultGeometryAttributeName()
-    gvsig.logger("HOLA8")
+
     self.expression.setPhrase(
       self.expressionBuilder.ifnull(
         self.expressionBuilder.geometry(buffer1),
         self.expressionBuilder.constant(False),
         self.expressionBuilder.ST_Intersects(
-          self.expressionBuilder.STForce2DFunction(self.expressionBuilder.column(self.geomName)),
+          self.expressionBuilder.ST_Force2D(self.expressionBuilder.column(self.geomName)),
           self.expressionBuilder.geometry(buffer1) 
         )
       ).toString()
     )
-    gvsig.logger(self.expression.getPhrase())
-    gvsig.logger("HOLA4")
+
     if dataSet2.findFirst(self.expression) != None:
-      gvsig.logger("HOLA5")
       return True
     return False
 
@@ -113,9 +112,9 @@ class ContainsPointPolygonRule(AbstractTopologyRule):
         
       if geomManager.isSubtype(geom.POLYGON,geometryType1.getType()):
         if mustConvert2D:
-          gvsig.logger("HOLA0")
+          proj=polygon1.getProjection()
           polygon1=polygon1.force2D()
-          gvsig.logger("HOLA1")
+          polygon1.setProjection(proj)
 
         if not operation(polygon1, dataSet2):
           report.addLine(self,
@@ -133,8 +132,10 @@ class ContainsPointPolygonRule(AbstractTopologyRule):
           )
 
       elif geomManager.isSubtype(geom.MULTIPOLYGON,geometryType1.getType()):
+        proj=polygon1.getProjection()
         if mustConvert2D:
           polygon1=polygon1.force2D()
+          polygon1.setProjection(proj)
         if not operation(polygon1, dataSet2):
           report.addLine(self,
             self.getDataSet1(),
