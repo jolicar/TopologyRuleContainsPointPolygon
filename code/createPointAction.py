@@ -26,13 +26,7 @@ class CreatePointAction(AbstractTopologyRuleAction):
   
         store1=dataSet1.getFeatureStore()
         store2=dataSet2.getFeatureStore()
-  
-        #proj=store1.getDefaultFeatureType().getProjection()
-        #subtype=store1.getDefaultFeatureType().getSubType()
 
-        #proj=store1.getFeatures()[0].getDefaultGeometry().getProjection()
-        #subtype=store1.getFeatures()[0].getDefaultGeometry().getGeometryType().getSubType()
-  
         if geomManager.isSubtype(geom.MULTIPOLYGON,store1.getFeatures()[0].getDefaultGeometry().getGeometryType().getType()):
           polygon=line.getGeometry().getPrimitiveAt(0)
 
@@ -41,7 +35,6 @@ class CreatePointAction(AbstractTopologyRuleAction):
         newPoint=polygon.getInteriorPoint()
 
         newFeature=store2.createNewFeature()
-        #geomName=store2.getDefaultFeatureType().getDefaultGeometryAttributeName()
 
         newFeature.setDefaultGeometry(newPoint)
 
