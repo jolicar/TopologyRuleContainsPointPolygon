@@ -13,7 +13,7 @@ class CreatePointAction(AbstractTopologyRuleAction):
         AbstractTopologyRuleAction.__init__(
             self,
       "containsPointPolygon",
-            "Create Point Action",
+            "CreatePointAction",
             "Create Point Action",
             " This action creates a new aleatory internal point feature on the wrong polygon feature. The behavior of the create action in multigeometries is simple. If the multipolygon don't have at lest one point on his geometry, the fixed action create a new aleatory internal point feature on his first geometry."
         )

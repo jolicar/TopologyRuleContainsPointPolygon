@@ -9,7 +9,9 @@ uselib.use_plugin("org.gvsig.topology.app.mainplugin")
 from org.gvsig.fmap.geom import Geometry
 from org.gvsig.tools.util import ListBuilder
 from org.gvsig.topology.lib.api import TopologyLocator
-from org.gvsig.topology.lib.spi import AbstractTopologyRuleFactory
+from org.gvsig.topology.lib.spi import AbstractTopologyRuleFactory, RuleResourceLoaderUtils
+
+from java.io import File
 
 from containsPointPolygonRule import ContainsPointPolygonRule
 
@@ -24,6 +26,12 @@ class ContainsPointPolygonRuleFactory(AbstractTopologyRuleFactory):
             ListBuilder().add(Geometry.TYPES.POLYGON).add(Geometry.TYPES.MULTIPOLYGON).asList(),
             ListBuilder().add(Geometry.TYPES.POINT).add(Geometry.TYPES.MULTIPOINT).asList()
         )
+
+        pathName = gvsig.getResource(__file__,'ContainsPointPolygon.json')
+        url = File(pathName).toURL()
+        gvsig.logger(str(url))
+        json = RuleResourceLoaderUtils.getRule(url)
+        self.load_from_resource(url, json)
     
     def createRule(self, plan, dataSet1, dataSet2, tolerance):
         rule = ContainsPointPolygonRule(plan, self, tolerance, dataSet1, dataSet2)

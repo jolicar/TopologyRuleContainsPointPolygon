@@ -1,0 +1,22 @@
+{
+    "id": "ContainsPointPolygon",
+    "name": "Contains Point Polygon GSoC2020",
+    "description": [ 
+        "<img src=\"@@@.png\">\n",     
+        " The rule evaluates all the polygons. If each polygon have at least one point inside, the rule returns True. The points has to fall within the polygon's area, not on the boundary or out of it. The red polygons does the rule false.\n \n NOTE 1: If the Tolerance equals zero, the rule does as above. If the tolerance is greater than zero, the point are transformed into polygon. If one point of this new polygon are inside of dataset 1 polygon, the rule return True. \n \n NOTE 2: The behavior of the rule in multigeometries is simple. For Multipolygons, if one of their geometries has at least one point inside, the rule returns True. For Multipoints, if one of these geometries are inside of polygon's area, the rule returns True."	    
+    ],
+    "actions" : {
+        "DeletePolygonAction": {
+            "name" : "Delete Polygon Action",
+            "description": [ 
+            "The delete action removes polygon features for cases when Contains Point Topology Rule it is false. The rule evaluates all the polygons. If each polygon have at least one point inside, the rule returns True. The points has to fall within the polygon's area, not on the boundary or out of it."
+            ]
+        },
+		"CreatePointAction": {
+		    "name" : "Create Point Action",
+            "description": [ 
+            "This action creates a new aleatory internal point feature on the wrong polygon feature. The behavior of the create action in multigeometries is simple. If the multipolygon don't have at lest one point on his geometry, the fixed action create a new aleatory internal point feature on his first geometry."
+            ]
+        }
+    }
+}
