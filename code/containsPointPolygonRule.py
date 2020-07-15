@@ -92,20 +92,7 @@ class ContainsPointPolygonRule(AbstractTopologyRule):
       return True
     return False
 
-  def execute(self, taskStatus, report):
-      dataSet1 = self.getDataSet1()
-      dataSet2 = self.getDataSet2()
-      
-      store1=dataSet1.getFeatureStore()
-      store2=dataSet2.getFeatureStore()
 
-      if store1.getSRSDefaultGeometry()==store2.getSRSDefaultGeometry():
-        self.execute(self, taskStatus, report)
-      else:
-        msgbox("Can't execute rule. The two datasets cant have a different projection")
-        pass
-
-  
   def check(self, taskStatus, report, feature1): #feature1=polygon
     try:
       polygon1 = feature1.getDefaultGeometry()
